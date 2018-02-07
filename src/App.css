@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.ant-card-meta-description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ant-card-cover {
+  width: 200px;
+}
+
+.ant-layout-header {
+  z-index: 90;
+}
+
+.ant-select-dropdown {
+  z-index: 100;
+}
+
+.ant-row {
+  margin-bottom: 75px;
+}
