@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tooltip, Icon, Menu, Dropdown } from 'antd'
+import { Icon, Menu, Dropdown } from 'antd'
 
 import BookCard from './BookCard'
 

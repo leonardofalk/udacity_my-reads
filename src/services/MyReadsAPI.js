@@ -2,7 +2,8 @@ import { getAll, get, search as searchAPI, update } from './AbstractBooksAPI';
 import _ from 'lodash';
 
 const transformParams = (bookParams) => {
-  bookParams.cover = bookParams.imageLinks.thumbnail || bookParams.imageLinks.smallThumbnail;
+  const { cover, imageLinks = {} } = bookParams;
+  bookParams.cover = cover || imageLinks.thumbnail || imageLinks.smallThumbnail;
   bookParams.description = (bookParams.authors || ['Unknown Author']).join(', ');
 
   return bookParams
@@ -17,8 +18,20 @@ const getAllByShelf = async (shelfName) => {
 
 const search = async (query, maxResult) => {
   const books = await searchAPI(query, maxResult);
+  const allBooks = await getAll();
+  const shelves  = {}
 
-  return books.map(transformParams);
+  allBooks.forEach((book) => {
+    shelves[book.id] = book.shelf;
+  })
+
+  const addCurrentShelf = (bookParams) => {
+    bookParams.currentShelf = shelves[bookParams.id];
+
+    return bookParams;
+  }
+
+  return books.map( (book) => addCurrentShelf(transformParams(book)) );
 }
 
 export {

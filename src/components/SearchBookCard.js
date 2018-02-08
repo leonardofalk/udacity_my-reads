@@ -2,6 +2,7 @@ import React from 'react'
 import { Icon, Menu, Dropdown, Button } from 'antd'
 
 import BookCard from './BookCard'
+import CurrentShelfIcon from './CurrentShelfIcon';
 
 import { update } from '../services/MyReadsAPI';
 
@@ -17,6 +18,10 @@ class SearchBookCard extends BookCard {
   _renderActions = () => {
     if (this.state.added) {
       return [<Icon type="check-circle-o" style={{color: '#52c41a'}} />]
+    }
+
+    if (this.props.currentShelf) {
+      return [<CurrentShelfIcon shelfName={this.props.currentShelf}/>]
     }
 
     return [

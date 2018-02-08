@@ -30,8 +30,6 @@ class SearchSelect extends Component {
   )
 
   onSelect = (query) => {
-    console.info(query);
-
     const element = document.querySelector('#search_input');
 
     if (element) {
